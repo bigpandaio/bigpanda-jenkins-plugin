@@ -149,7 +149,7 @@ public class BigPandaNotifier extends Notifier {
         JSONObject json = new JSONObject();
 
         json.put("version", String.valueOf(rootBuild.getNumber()));
-        json.put("source", "Jenkins: " + Jenkins.getInstance().getRootUrl() + " Version: " + Jenkins.getVersion().toString()); 
+        json.put("source", "jenkins");//"Jenkins: " + Jenkins.getInstance().getRootUrl() + " Version: " + Jenkins.getVersion().toString()); 
 
 
         JSONArray hosts = new JSONArray();
