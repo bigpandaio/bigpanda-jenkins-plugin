@@ -1,0 +1,9 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:advanced>
+        <f:entry title="Use node names instead of labels"
+          field="bigPandaUseNodeNameInsteadOfLabels"
+          help="${rootUrl}/plugin/bigpanda-jenkins/help-bigpanda-useNodeNamesInsteadOfLabels.html">
+              <f:checkbox />
+        </f:entry>
+    </f:advanced>
+</j:jelly>
