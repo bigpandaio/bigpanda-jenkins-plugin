@@ -9,6 +9,8 @@
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>bigpanda-jenkins</artifactId>
     <name>BigPanda Notifier</name>
+    <description>Notifies BigPanda of Jenkins builds</description>
+    <url>http://wiki.jenkins-ci.org/display/JENKINS/BigPanda+Jenkins+Plugin</url>
     <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <licenses>
@@ -24,6 +26,12 @@
             <email>erik.zaadi@gmail.com</email>
         </developer>
     </developers>
+    <distributionManagement>
+        <repository>
+            <id>maven.jenkins-ci.org</id>
+            <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
