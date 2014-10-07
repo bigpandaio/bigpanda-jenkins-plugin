@@ -156,7 +156,7 @@ public class BigPandaNotifier extends Notifier {
 
             if ((token == null) || token.equals("")) {
                 return FormValidation.error(
-                        "Please specify a valid bigPanda token here");
+                        "Please specify a valid BigPanda token here");
             } else {
                 return FormValidation.ok();
             }
