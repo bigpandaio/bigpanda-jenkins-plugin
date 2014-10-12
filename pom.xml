@@ -3,7 +3,6 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <!--<version>1.448</version>-->
         <version>1.565.3</version>
     </parent>
     <groupId>org.jenkins-ci.plugins</groupId>
@@ -55,6 +54,11 @@
             <artifactId>git</artifactId>
             <version>1.1.26</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>14.0</version>
         </dependency>
     </dependencies>
 </project>
