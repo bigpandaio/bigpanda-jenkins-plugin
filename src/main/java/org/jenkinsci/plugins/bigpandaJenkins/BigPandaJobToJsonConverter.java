@@ -2,6 +2,8 @@ package org.jenkinsci.plugins.bigpandaJenkins;
 
 import hudson.model.AbstractBuild;
 import hudson.model.Result;
+import hudson.model.Cause;
+import hudson.model.Cause.UserIdCause;
 import hudson.scm.ChangeLogSet;
 import jenkins.model.Jenkins;
 import net.sf.json.JSONArray;
@@ -51,6 +53,9 @@ public class BigPandaJobToJsonConverter {
 
         String description = getBuildDescription(build);
 
+        List<Cause> causes = build.getCauses();
+
+
         ChangeLogSet<? extends ChangeLogSet.Entry> changeSet = rootBuild.getChangeSet();
         List<ChangeLogSet.Entry> entries = new LinkedList<ChangeLogSet.Entry>();
         for (Object o : changeSet.getItems()) {
@@ -58,7 +63,17 @@ public class BigPandaJobToJsonConverter {
             entries.add(entry);
         }
         if (entries.isEmpty()) {
-            json.put("owner", "unknown");
+            if (causes.size() > 0 && (causes.get(0) instanceof Cause.UserIdCause)){
+                json.put("owner", ((UserIdCause)causes.get(0)).getUserName());
+            } else {
+                json.put("owner", "unknown");
+            }
+            if (description != null){
+                json.put("description", description);
+            } else { 
+                json.put("description", causes.get(0).getShortDescription());
+            }
+
         } else {
             Set<String> authors = new HashSet<String>();
             Set<String> commitAndMessages = new HashSet<String>();
