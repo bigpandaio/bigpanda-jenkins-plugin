@@ -9,13 +9,13 @@
     <name>BigPanda Notifier</name>
     <description>Notifies BigPanda of Jenkins builds</description>
     <url>http://wiki.jenkins-ci.org/display/JENKINS/BigPanda+Jenkins+Plugin</url>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <packaging>hpi</packaging>
     <scm>
         <connection>scm:git:ssh://github.com/jenkinsci/bigpanda-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/jenkinsci/bigpanda-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/bigpanda-plugin</url>
-      <tag>HEAD</tag>
+      <tag>bigpanda-jenkins-1.1</tag>
   </scm>
     <licenses>
         <license>
