@@ -6,3 +6,9 @@ work/
 *.jar
 *.war
 *.class
+
+.classpath
+.factorypath
+.project
+.settings/
+.vscode/

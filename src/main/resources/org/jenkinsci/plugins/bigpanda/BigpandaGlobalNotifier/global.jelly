@@ -1,0 +1,29 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:section title="Global BigPanda Notifications">
+    <f:entry title="BigPanda API Key"
+      description="BigPanda User Authentication Key"
+      field="bigpandaApiKey"
+      value="${descriptor.getBigPandaApiKey()}"
+      help="${rootUrl}/plugin/bigpanda-jenkins/help-bigpanda-api.html">
+      <f:textbox />
+    </f:entry>
+    <f:entry title="BigPanda App Key"
+      description="BigPanda Integration key"
+      field="bigpandaAppKey"
+      value="${descriptor.getBigPandaAppKey()}"
+      help="${rootUrl}/plugin/bigpanda-jenkins/help-bigpanda-app.html">
+      <f:textbox />
+    </f:entry>
+    <f:advanced>
+        <f:entry title="Endpoint URL"
+          field="webhookUrl"
+          name="webhookUrl"
+          value="${descriptor.getWebhookUrl()}"
+          help="${rootUrl}/plugin/bigpanda-jenkins/help-webhook-url.html">
+          <f:textbox
+              default="${description.getDefaultWebhookUrl()}"
+          />
+        </f:entry>
+    </f:advanced>
+  </f:section>
+</j:jelly>

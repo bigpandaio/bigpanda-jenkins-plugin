@@ -1,3 +1,3 @@
-## BigPanda Jenkins Notification Plugin
+## BigPanda Global Notification Plugin
 
-See [the docs](https://docs.bigpanda.io/integrations/index.html#jenkins) for more information.
+See [the docs](https://docs.bigpanda.io/docs/jenkins) for more information.
