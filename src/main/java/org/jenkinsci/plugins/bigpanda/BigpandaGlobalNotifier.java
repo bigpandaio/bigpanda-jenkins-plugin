@@ -68,7 +68,7 @@ public class BigpandaGlobalNotifier extends RunListener<Run<?, ?>> implements De
         private String bigpandaApiKey;
         private String bigpandaAppKey;
         private String webhookUrl;
-        private final String defaultWebhookUrl = "https://9ctlu97rta.execute-api.us-east-1.amazonaws.com/dev/jenkins/changes";
+        private final String defaultWebhookUrl = "https://inbound.bigpanda.io/jenkins/changes";
 
         public DescriptorImpl() {
             load();
