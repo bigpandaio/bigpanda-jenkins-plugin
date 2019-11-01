@@ -14,6 +14,7 @@ import hudson.model.Result;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.triggers.TimerTrigger;
+import hudson.util.VersionNumber;
 import jenkins.model.Jenkins;
 import net.sf.json.JSONObject;
 
@@ -43,18 +44,19 @@ public class ChangesBuilder {
         this.tags.put("description", getBuildDescription());
 
         // if return is null, add empty string
-        String jenkinsVersion = "";
-        
-        if (Jenkins.getVersion() != null) {
-            jenkinsVersion = Jenkins.getVersion().toString();
+        VersionNumber jenkinsVersion = Jenkins.getVersion();
+        String version = "";
+
+        if (jenkinsVersion != null) {
+            version = jenkinsVersion.toString();
         }
 
         if (jenkinsVersion == null) {
-            jenkinsVersion = "";
+            version = "";
         }
 
         // adding jenkins data
-        this.tags.put("jenkins_version", jenkinsVersion);
+        this.tags.put("jenkins_version", version);
 
         // Add the tags object
         this.json.put("tags", this.tags);
