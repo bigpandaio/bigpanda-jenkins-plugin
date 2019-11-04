@@ -39,7 +39,7 @@ public class BigpandaGlobalNotifier extends RunListener<Run<?, ?>> implements De
     }
 
     public DescriptorImpl getDescriptorImpl() {
-        return (DescriptorImpl) Jenkins.getInstance().getDescriptorOrDie(BigpandaGlobalNotifier.class);
+        return (DescriptorImpl) Jenkins.get().getDescriptorOrDie(BigpandaGlobalNotifier.class);
     }
 
     private void publish(Run<?, ?> r, TaskListener listener) {
@@ -68,7 +68,7 @@ public class BigpandaGlobalNotifier extends RunListener<Run<?, ?>> implements De
         private String bigpandaApiKey;
         private String bigpandaAppKey;
         private String webhookUrl;
-        private final String defaultWebhookUrl = "https://inbound.bigpanda.io/jenkins/changes";
+        private static String defaultWebhookUrl = "https://inbound.bigpanda.io/jenkins/changes";
 
         public DescriptorImpl() {
             load();

@@ -2,6 +2,7 @@ package org.jenkinsci.plugins.bigpanda;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -13,6 +14,7 @@ import hudson.model.Result;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.triggers.TimerTrigger;
+import hudson.util.VersionNumber;
 import jenkins.model.Jenkins;
 import net.sf.json.JSONObject;
 
@@ -41,8 +43,20 @@ public class ChangesBuilder {
         // Adding remaining fields to tags object
         this.tags.put("description", getBuildDescription());
 
+        // if return is null, add empty string
+        VersionNumber jenkinsVersion = Jenkins.getVersion();
+        String version = "";
+
+        if (jenkinsVersion != null) {
+            version = jenkinsVersion.toString();
+        }
+
+        if (jenkinsVersion == null) {
+            version = "";
+        }
+
         // adding jenkins data
-        this.tags.put("jenkins_version", Jenkins.getVersion().toString());
+        this.tags.put("jenkins_version", version);
 
         // Add the tags object
         this.json.put("tags", this.tags);
@@ -69,7 +83,7 @@ public class ChangesBuilder {
         this.json.put("identifier", String.valueOf(identifier));
         this.json.put("start", (this.build.getStartTimeInMillis() / 1000));
         this.json.put("summary", this.build.getFullDisplayName().replaceAll("[^a-zA-Z0-9-# ]", ""));
-        this.json.put("ticket_url", Jenkins.getInstance().getRootUrl() + this.build.getUrl());
+        this.json.put("ticket_url", Jenkins.get().getRootUrl() + this.build.getUrl());
 
         if (getEndTime() != 0) {
             this.json.put("end", getEndTime());
@@ -185,7 +199,7 @@ public class ChangesBuilder {
      * @return String hascode representation of input string
      */
     private String getMd5(String input) {
-        String hashText = new String();
+        String hashText = "";
 
         // Static getInstance method is called with hashing MD5
         try {
@@ -193,7 +207,7 @@ public class ChangesBuilder {
 
             // digest() method is called to calculate message digest 
             //  of an input digest() return array of byte 
-            byte[] messageDigest = md.digest(input.getBytes()); 
+            byte[] messageDigest = md.digest(input.getBytes(Charset.forName("UTF-8"))); 
   
             // Convert byte array into signum representation 
             BigInteger no = new BigInteger(1, messageDigest); 
