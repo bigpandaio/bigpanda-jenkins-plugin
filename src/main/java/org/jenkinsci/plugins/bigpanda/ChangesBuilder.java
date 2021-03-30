@@ -130,7 +130,6 @@ public class ChangesBuilder {
         try {
             environment = this.build.getEnvironment(this.listener);
 
-            this.listener.getLogger().println(environment);
         } catch (IOException e) {
             this.listener.getLogger().println("BigPanda Notifier: Could not retrieve environment.");
         } catch (InterruptedException e) {
