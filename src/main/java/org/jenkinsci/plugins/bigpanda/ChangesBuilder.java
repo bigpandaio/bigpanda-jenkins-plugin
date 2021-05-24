@@ -177,18 +177,19 @@ public class ChangesBuilder {
     private String getBuildDescription() {
         Run<?, ?> bld = this.build;
         Job<?, ?> parent;
+        String description = "No Description Found";
 
         if (bld.getDescription() != null && bld.getDescription().trim().length() > 0) {
-            return bld.getDescription();
+            description = bld.getDescription();
         } else {
             parent = bld.getParent();
 
-            if (parent.getDescription() == null || parent.getDescription().trim().length() <= 0) {
-                return parent.getDescription();
-            } else {
-                return "No Description";
+            if (parent.getDescription() != null && parent.getDescription().trim().length() > 0) {
+                description = parent.getDescription();
             }
         }
+
+        return description;
     }
 
     /**
