@@ -4,11 +4,19 @@ import net.sf.json.JSONObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
+import jenkins.model.Jenkins;
+import hudson.ProxyConfiguration;
 
 public class BigpandaApiWrapper {
     private final String bigpandaApiKey;
@@ -33,7 +41,32 @@ public class BigpandaApiWrapper {
         
         HttpPost req = createRequest(payloadEntity);
 
-        HttpClient client = HttpClientBuilder.create().build();
+        HttpClientBuilder clientBuilder = HttpClientBuilder.create();
+        ProxyConfiguration proxyConfig = Jenkins.get().proxy;
+        if(proxyConfig != null) {
+            HttpHost proxy = new HttpHost(proxyConfig.name, proxyConfig.port);
+
+            RequestConfig config = RequestConfig.custom()
+                .setProxy(proxy)
+                .build();
+
+            clientBuilder = clientBuilder.setDefaultRequestConfig(config);
+            String userName = proxyConfig.getUserName();
+            String password = proxyConfig.getPassword();
+            Boolean hasUsername = userName != null && !userName.trim().equals("");
+            Boolean hasPassword = password != null && !password.trim().equals("");
+
+            if(hasUsername && hasPassword) {
+                CredentialsProvider credsProvider = new BasicCredentialsProvider();
+                credsProvider.setCredentials(
+                        new AuthScope(proxyConfig.name, proxyConfig.port),
+                        new UsernamePasswordCredentials(userName, password));
+                clientBuilder = clientBuilder.setDefaultCredentialsProvider(credsProvider);
+            }
+        }
+
+        HttpClient client = clientBuilder.build();
+        
         HttpResponse res = client.execute(req);
 
         if (res.getStatusLine().getStatusCode() != 200) {
