@@ -14,6 +14,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.model.listeners.RunListener;
 import hudson.util.FormValidation;
+import hudson.util.Secret;
 import jenkins.model.Jenkins;
 import net.sf.json.JSONObject;
 
@@ -51,7 +52,7 @@ public class BigpandaGlobalNotifier extends RunListener<Run<?, ?>> implements De
 
         change = changeBuilder.create();
 
-        BigpandaApiWrapper bpApi = new BigpandaApiWrapper( ((DescriptorImpl) descriptor).getBigpandaApiKey(), 
+        BigpandaApiWrapper bpApi = new BigpandaApiWrapper( ((DescriptorImpl) descriptor).getBigpandaApiKey().getPlainText(), 
                                                             ((DescriptorImpl) descriptor).getBigpandaAppKey(), ((DescriptorImpl) descriptor).getWebhookUrl());
 
         try {
@@ -65,7 +66,7 @@ public class BigpandaGlobalNotifier extends RunListener<Run<?, ?>> implements De
 
     @Extension
     public static final class DescriptorImpl extends Descriptor<BigpandaGlobalNotifier> {
-        private String bigpandaApiKey;
+        private Secret bigpandaApiKey;
         private String bigpandaAppKey;
         private String webhookUrl;
         private static String defaultWebhookUrl = "https://inbound.bigpanda.io/jenkins/changes";
@@ -90,7 +91,7 @@ public class BigpandaGlobalNotifier extends RunListener<Run<?, ?>> implements De
         /**
          * @return Bigpanda Api Key
          */
-        public String getBigpandaApiKey() {
+        public Secret getBigpandaApiKey() {
             return this.bigpandaApiKey;
         }
 
@@ -122,7 +123,7 @@ public class BigpandaGlobalNotifier extends RunListener<Run<?, ?>> implements De
         }
 
         @DataBoundSetter
-        public void setBigpandaApiKey(String bigpandaApiKey) {
+        public void setBigpandaApiKey(Secret bigpandaApiKey) {
             this.bigpandaApiKey = bigpandaApiKey;
         }
 

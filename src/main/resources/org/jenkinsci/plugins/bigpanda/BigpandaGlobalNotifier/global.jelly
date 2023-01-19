@@ -6,7 +6,7 @@
       field="bigpandaApiKey"
       value="${descriptor.getBigPandaApiKey()}"
       help="${rootUrl}/plugin/bigpanda-jenkins/help-bigpanda-api.html">
-      <f:textbox />
+      <f:password />
     </f:entry>
     <f:entry title="BigPanda App Key"
       description="BigPanda Integration key"
