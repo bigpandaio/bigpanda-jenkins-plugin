@@ -10,13 +10,13 @@
     <artifactId>bigpanda-jenkins</artifactId>
     <description>Notifies BigPanda of Jenkins builds</description>
     <url>https://github.com/jenkinsci/bigpanda-plugin</url>
-    <version>1.4.1-SNAPSHOT</version>
+    <version>${revision}${changelist}</version>
     <packaging>hpi</packaging>
     <scm>
-        <connection>scm:git:ssh://github.com/jenkinsci/bigpanda-plugin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jenkinsci/bigpanda-plugin.git</developerConnection>
-        <url>https://github.com/jenkinsci/bigpanda-plugin</url>
-        <tag>HEAD</tag>
+        <connection>scm:git:ssh://github.com/${gitHubRepo}.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/${gitHubRepo}.git</developerConnection>
+        <url>https://github.com/${gitHubRepo}</url>
+        <tag>${scmTag}</tag>
     </scm>
     <licenses>
         <license>
@@ -85,6 +85,9 @@
         </dependency>
     </dependencies>
     <properties>
+        <revision>1.4.1</revision>
+        <changelist>-SNAPSHOT</changelist>
+        <gitHubRepo>jenkinsci/bigpanda-plugin</gitHubRepo>
         <jenkins.version>2.387</jenkins.version>
     </properties>
     <build>
