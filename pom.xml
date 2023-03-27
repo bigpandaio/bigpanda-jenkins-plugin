@@ -88,6 +88,9 @@
         <revision>1.4.1</revision>
         <changelist>-SNAPSHOT</changelist>
         <gitHubRepo>jenkinsci/bigpanda-plugin</gitHubRepo>
+        <revision>1.4.1</revision>
+        <changelist>-SNAPSHOT</changelist>
+        <gitHubRepo>jenkinsci/bigpanda-plugin</gitHubRepo>
         <jenkins.version>2.387</jenkins.version>
     </properties>
     <build>
