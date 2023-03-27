@@ -179,7 +179,7 @@ public class ChangesBuilder {
         Job<?, ?> parent;
         String description = "No Description Found";
 
-        String bldDesc = bld.getDescription();
+        String buildDesc = bld.getDescription();
 
         if (buildDesc == null) {
             buildDesc = "";
