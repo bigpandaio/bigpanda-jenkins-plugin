@@ -189,6 +189,10 @@ public class ChangesBuilder {
             }
         }
 
+        if (description == null) {
+          description = "";
+        }
+
         return description;
     }
 
