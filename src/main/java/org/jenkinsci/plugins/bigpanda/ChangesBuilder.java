@@ -185,7 +185,7 @@ public class ChangesBuilder {
             buildDesc = "";
         }
 
-        if (buildDesc != "" && buildDesc.trim().length() > 0) {
+        if ( buildDesc.trim().length() > 0) {
             description = buildDesc;
         } else {
             parent = bld.getParent();
