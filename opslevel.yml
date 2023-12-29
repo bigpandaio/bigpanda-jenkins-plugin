@@ -1,0 +1,32 @@
+---
+version: 1
+service:
+  name: bigpanda-jenkins-plugin
+  lifecycle: generally_available
+  tier: tier_1
+  product: Integrations
+  owner: integrations_inbound
+  language: Java
+  framework: Java
+  description: 
+  aliases:
+  tags:
+    - key: integration-type
+      value: inbound
+  repositories:
+    - name: bigpandaio/bigpanda-jenkins-plugin
+      path: '/'
+      provider: github
+      display_name: bigpanda-jenkins-plugin
+  tools:
+    - name: Wiki
+      category: wiki
+      url: https://github.com/bigpandaio/bigpanda-jenkins-plugin/blob/master/README.md
+      environment:
+    - name: Code
+      category: code
+      url: https://github.com/bigpandaio/bigpanda-jenkins-plugin
+      environment:
+    - name: Playbook
+      category: runbooks
+      url: https://agilepanda.atlassian.net/browse/BP-12206
