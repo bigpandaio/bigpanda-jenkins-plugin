@@ -8,7 +8,7 @@ service:
   owner: integrations_inbound
   language: Java
   framework: Java
-  description: 
+  description: The BigPanda Global Notifier is a service that integrates with Jenkins to enhance incident management. It works by triggering the Jenkins build process and sending active change details to BigPanda at the start of each build. 
   aliases:
   tags:
     - key: integration-type
